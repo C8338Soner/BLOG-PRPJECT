@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .serializers import PostSerializer, CommentSerializer
-from .models import Post, Comment
+from .serializers import PostSerializer, CommentSerializer, CategorySerializer
+from .models import Post, Comment, Category
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
@@ -12,14 +12,6 @@ from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, R
 class PostMVS(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    
-    
-    # def get_queryset(self):
-    #     queryset = Post.objects.all()
-    #     category = self.kwargs["category"]  # backend, frontend
-    #     queryset = queryset.filter(category__name=category)
-    #     return queryset
-
 
 
  
@@ -32,3 +24,8 @@ class CommentMVS(mixins.ListModelMixin, mixins.CreateModelMixin, GenericAPIView)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+class CategoryMVS(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
