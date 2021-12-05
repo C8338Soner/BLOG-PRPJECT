@@ -18,8 +18,8 @@ class Category(models.Model):
 
 class Post(models.Model):
     OPTIONS = (
-        ('d', 'Draft'),
-        ('p', 'Published')
+        ('draft', 'Draft'),
+        ('published', 'Published')
     )
 
     title = models.CharField(max_length=100)
