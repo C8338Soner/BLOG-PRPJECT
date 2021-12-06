@@ -5,11 +5,12 @@ from .views import PostMVS, CommentMVS, CategoryMVS
 router = routers.DefaultRouter()
 router.register('postcreate', PostMVS)
 router.register('category', CategoryMVS) 
+# router.register('comments', CommentMVS) 
 
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('comment/', CommentMVS.as_view()),
+    path('comment/<str:pk>', CommentMVS.as_view()),
     # path('category/', CategoryMVS.as_view()),
 
 ]
